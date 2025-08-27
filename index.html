@@ -7,7 +7,6 @@
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta name="color-scheme" content="light dark" />
     <style>
-        /* --- Design tokens (auto light/dark) --- */
         :root {
             --bg: #0b0c0f;
             --panel: #121419;
@@ -40,35 +39,17 @@
             }
         }
 
-        /* --- Base --- */
         * {
             box-sizing: border-box;
         }
 
-        html,
-        body {
-            height: 100%;
-        }
-
         body {
             margin: 0;
-            font: 15px/1.55 Inter, ui-sans-serif, system-ui, -apple-system, "Segoe UI", Roboto, Helvetica, Arial, "Apple Color Emoji", "Segoe UI Emoji";
+            font: 15px/1.55 Inter, ui-sans-serif, system-ui, -apple-system, "Segoe UI", Roboto, Helvetica, Arial;
             color: var(--text);
-            background: radial-gradient(1200px 600px at 20% -10%, rgba(124, 197, 255, .08), transparent 60%),
-                radial-gradient(1200px 700px at 120% -20%, rgba(124, 197, 255, .06), transparent 65%),
-                var(--bg);
+            background: var(--bg);
         }
 
-        a {
-            color: var(--link);
-            text-decoration: none;
-        }
-
-        a:hover {
-            text-decoration: underline;
-        }
-
-        /* --- Layout --- */
         .container {
             max-width: 1200px;
             margin: 0 auto;
@@ -79,7 +60,6 @@
             display: flex;
             align-items: center;
             justify-content: space-between;
-            gap: 16px;
             margin-bottom: 16px;
         }
 
@@ -105,7 +85,6 @@
         h1 {
             margin: 0;
             font-size: 18px;
-            letter-spacing: .2px;
         }
 
         .sub {
@@ -114,7 +93,6 @@
             font-size: 13px;
         }
 
-        /* --- Grid --- */
         .grid {
             display: grid;
             gap: 18px;
@@ -127,13 +105,11 @@
             }
         }
 
-        /* --- Card --- */
         .card {
             background: var(--panel);
             border: 1px solid var(--border);
             border-radius: 16px;
             box-shadow: var(--shadow);
-            overflow: clip;
         }
 
         .card .inner {
@@ -147,7 +123,6 @@
             margin-bottom: 10px;
         }
 
-        /* --- Controls --- */
         label {
             display: block;
             font-weight: 600;
@@ -155,13 +130,12 @@
             color: var(--muted);
             font-size: 12px;
             text-transform: uppercase;
-            letter-spacing: .4px;
         }
 
         input[type="text"],
         textarea {
             width: 100%;
-            padding: 12px 12px;
+            padding: 12px;
             border-radius: 12px;
             border: 1px solid var(--border);
             background: var(--input);
@@ -169,20 +143,13 @@
             outline: none;
         }
 
-        input[type="text"]:focus,
-        textarea:focus {
-            box-shadow: var(--ring);
-            border-color: transparent;
-        }
-
         textarea {
             min-height: 220px;
             resize: vertical;
-            font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
+            font-family: ui-monospace, monospace;
         }
 
         .btn {
-            appearance: none;
             border: 1px solid var(--border);
             background: var(--card);
             color: var(--text);
@@ -190,32 +157,21 @@
             border-radius: 10px;
             cursor: pointer;
             font-weight: 600;
-            transition: transform .02s ease, filter .15s ease;
         }
 
         .btn:hover {
             filter: brightness(1.05);
         }
 
-        .btn:active {
-            transform: translateY(1px);
-        }
-
         .btn.primary {
             background: linear-gradient(180deg, color-mix(in oklab, var(--accent) 28%, transparent), transparent);
-            border-color: color-mix(in oklab, var(--accent) 45%, var(--border));
-        }
-
-        .hint {
-            color: var(--muted);
-            font-size: 12px;
-            margin-top: 8px;
         }
 
         .search {
             display: flex;
             gap: 8px;
             margin-top: 10px;
+            flex-wrap: wrap;
         }
 
         .stats {
@@ -234,7 +190,6 @@
             color: var(--muted);
         }
 
-        /* --- Pages --- */
         .pages {
             display: grid;
             gap: 14px;
@@ -245,7 +200,6 @@
             border: 1px solid var(--border);
             border-radius: 14px;
             background: var(--card);
-            overflow: hidden;
         }
 
         details.page>summary {
@@ -253,10 +207,7 @@
             padding: 12px 14px;
             cursor: pointer;
             display: flex;
-            align-items: center;
             gap: 10px;
-            background: linear-gradient(180deg, color-mix(in oklab, var(--card) 75%, var(--chip)), var(--card));
-            border-bottom: 1px solid var(--border);
         }
 
         details.page>summary::-webkit-details-marker {
@@ -270,7 +221,6 @@
             padding: 2px 8px;
             border-radius: 999px;
             font-size: 12px;
-            border: 1px solid var(--border);
         }
 
         .list {
@@ -285,11 +235,11 @@
             padding: 12px;
             border: 1px dashed var(--border);
             border-radius: 10px;
-            background: color-mix(in oklab, var(--card) 90%, var(--chip));
+            background: var(--card);
         }
 
         .key {
-            font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
+            font-family: monospace;
             color: var(--accent);
             font-size: 13px;
         }
@@ -300,32 +250,15 @@
         }
 
         .value {
-            font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
+            font-family: monospace;
             white-space: pre-wrap;
             word-break: break-word;
             color: var(--text);
             background: var(--input);
             border: 1px solid var(--border);
-            padding: 8px 10px;
+            padding: 8px;
             border-radius: 8px;
             font-size: 12.5px;
-        }
-
-        .pill {
-            display: inline-block;
-            padding: 2px 6px;
-            border-radius: 8px;
-            background: var(--chip);
-            color: var(--text);
-            border: 1px solid var(--border);
-            font-size: 11px;
-        }
-
-        footer {
-            margin-top: 14px;
-            color: var(--muted);
-            font-size: 12px;
-            text-align: right;
         }
     </style>
 </head>
@@ -337,12 +270,9 @@
                 <div class="logo">VA</div>
                 <div>
                     <h1>526EZ Maximal JSON → Page Buckets</h1>
-                    <div class="sub">Paste the maximal JSON or fetch from the repo URL. Local-only — nothing is
-                        uploaded.</div>
+                    <div class="sub">Paste the maximal JSON or fetch from the repo URL.</div>
                 </div>
             </div>
-            <div><a href="https://github.com/arperry87/vets-maximal-page-grouper" target="_blank" rel="noopener">GitHub
-                    ↗</a></div>
         </header>
 
         <div class="grid">
@@ -360,19 +290,23 @@
 
                     <label for="json">Maximal JSON</label>
                     <textarea id="json" placeholder="Paste the maximal-test.json contents here"></textarea>
-                    <div class="hint">
-                        Path in vets-website:
-                        <span
-                            class="pill">src/applications/disability-benefits/all-claims/tests/fixtures/data/transformed-data/maximal-test.json</span>
-                    </div>
 
                     <div class="search">
                         <input id="filter" type="text" placeholder="Filter keys/values…" />
                         <button class="btn" id="btn-copy-report">Copy page counts</button>
+                        <button class="btn" id="btn-copy-pages">Copy page list</button>
+                    </div>
+
+                    <div class="search">
+                        <select id="page-select"
+                            style="flex:1; padding:10px; border-radius:10px; border:1px solid var(--border); background:var(--input); color:var(--text);">
+                            <option value="" selected disabled>Pick a page…</option>
+                        </select>
+                        <button class="btn" id="btn-show-page">Show page</button>
+                        <button class="btn" id="btn-show-all">Show all</button>
                     </div>
 
                     <div class="stats" id="stats"></div>
-                    <footer>Theme adapts to your OS light/dark.</footer>
                 </div>
             </div>
 
@@ -383,45 +317,25 @@
     </div>
 
     <script>
-        // --- PAGE RULES (tuned to 526EZ all-claims). Edit as needed. ---
         const PAGE_RULES = [
             { name: "Claim Type", patterns: [/^view:claimType/, /^standardClaim$/, /^view:fdcWarning/] },
             { name: "Employment / Terminal / VA Employee", patterns: [/^isVaEmployee$/, /^isTerminallyIll$/] },
             { name: "Homelessness", patterns: [/^homelessOrAtRisk/, /^view:isHomeless/, /^homelessnessContact/] },
             { name: "Contact Information", patterns: [/^phoneAndEmail/, /^mailingAddress/, /^view:hasForwardingAddress/, /^forwardingAddress/, /^view:contactInfoDescription/] },
             { name: "Direct Deposit", patterns: [/^view:bankAccount$/, /^view:originalBankAccount$/] },
-            {
-                name: "Evidence & Uploads", patterns: [
-                    /^additionalDocuments/, /^view:uploadPrivateRecordsQualifier/, /^privateMedicalRecordAttachments/,
-                    /^view:vaMedicalRecordsIntro/, /^vaTreatmentFacilities/, /^view:hasEvidence/, /^view:selectableEvidenceTypes/, /^view:evidenceTypeHelp/
-                ]
-            },
-            {
-                name: "Special Circumstances", patterns: [
-                    /^view:unemployable$/, /^view:aidAndAttendance$/, /^view:modifyingHome$/, /^view:modifyingCar$/,
-                    /^view:needsCarHelp/, /^view:powStatus$/, /^view:isPow/
-                ]
-            },
+            { name: "Evidence & Uploads", patterns: [/^additionalDocuments/, /^view:uploadPrivateRecordsQualifier/, /^privateMedicalRecordAttachments/, /^view:vaMedicalRecordsIntro/, /^vaTreatmentFacilities/, /^view:hasEvidence/, /^view:selectableEvidenceTypes/, /^view:evidenceTypeHelp/] },
+            { name: "Special Circumstances", patterns: [/^view:unemployable$/, /^view:aidAndAttendance$/, /^view:modifyingHome$/, /^view:modifyingCar$/, /^view:needsCarHelp/, /^view:powStatus$/, /^view:isPow/] },
             { name: "New Disabilities", patterns: [/^newDisabilities/] },
             { name: "Rated Disabilities", patterns: [/^ratedDisabilities/, /^view:disabilitiesClarification/] },
             { name: "Service Information", patterns: [/^serviceInformation/] },
-            {
-                name: "PTSD Incidents & 781/781a", patterns: [
-                    /^view:selectablePtsdTypes/, /^view:ptsdTypeHelp/, /^view:upload781ChoiceHelp/,
-                    /^incident\d+/, /^view:upload781aChoiceHelp$/, /^secondaryIncident\d+/, /^view:otherSourcesHelp$/
-                ]
-            },
+            { name: "PTSD Incidents & 781/781a", patterns: [/^view:selectablePtsdTypes/, /^view:ptsdTypeHelp/, /^view:upload781ChoiceHelp/, /^incident\d+/, /^view:upload781aChoiceHelp$/, /^secondaryIncident\d+/, /^view:otherSourcesHelp$/] },
             { name: "Behavior Changes", patterns: [/^(physicalChanges|mentalChanges|workBehaviorChanges|socialBehaviorChanges)$/] },
-            {
-                name: "Unemployability (8940)", patterns: [
-                    /^view:unemployabilityHelp$/, /^unemployability/, /^view:privateMedicalFacility$/, /^view:upload4192Choice$/, /^view:downloadInfo$/, /^view:privateRecordsChoiceHelp$/
-                ]
-            },
+            { name: "Unemployability (8940)", patterns: [/^view:unemployabilityHelp$/, /^unemployability/, /^view:privateMedicalFacility$/, /^view:upload4192Choice$/, /^view:downloadInfo$/, /^view:privateRecordsChoiceHelp$/] },
             { name: "FAQ / Ancillary", patterns: [/^view:ancillaryFormsWizardIntro$/, /^view:faqAccordion$/] },
         ];
         const UNMAPPED = "Unmapped";
+        let LAST_PAGES = null;
 
-        // --- Flatten JSON to dot-paths ---
         function flatten(obj, prefix = "") {
             const out = [];
             const isObj = v => v && typeof v === "object" && !Array.isArray(v);
@@ -430,11 +344,8 @@
                     out.push({ key: p, value });
                     value.forEach(v => {
                         const childKey = p ? `${p}[]` : "[]";
-                        if (isObj(v) || Array.isArray(v)) {
-                            step(v, childKey);
-                        } else {
-                            out.push({ key: childKey, value: v });
-                        }
+                        if (isObj(v) || Array.isArray(v)) step(v, childKey);
+                        else out.push({ key: childKey, value: v });
                     });
                 } else if (isObj(value)) {
                     const keys = Object.keys(value);
@@ -450,18 +361,32 @@
         }
 
         function extractDataRoot(json) {
-            if (json && typeof json === "object" && "data" in json && typeof json.data === "object") return json.data;
+            if (!json || typeof json !== "object") return {};
+            if (json.data && typeof json.data === "object") return json.data;
+            if (json.formData && typeof json.formData === "object") return json.formData;
+            if (json.attributes && typeof json.attributes === "object") return json.attributes;
+            if (json.submission && typeof json.submission === "object") return json.submission;
+            const keys = Object.keys(json);
+            if (keys.length === 1 && typeof json[keys[0]] === "object") return json[keys[0]];
             return json;
         }
+
         function pageFor(rootKey) {
             for (const rule of PAGE_RULES) if (rule.patterns.some(re => re.test(rootKey))) return rule.name;
             return UNMAPPED;
         }
+
         function groupByPages(data) {
             const flat = flatten(data);
             const buckets = new Map();
+            const stripWrappers = (k) => {
+                if (!k) return k;
+                const parts = k.split(".");
+                const wrappers = new Set(["data", "formData", "attributes", "submission"]);
+                return wrappers.has(parts[0]) ? (parts[1] || parts[0]) : parts[0];
+            };
             for (const row of flat) {
-                const rootKey = (row.key || "").split(".")[0];
+                const rootKey = stripWrappers(row.key || "");
                 if (!rootKey) continue;
                 if (!buckets.has(rootKey)) buckets.set(rootKey, []);
                 buckets.get(rootKey).push(row);
@@ -475,7 +400,6 @@
             return pages;
         }
 
-        // --- DOM helpers ---
         const $ = sel => document.querySelector(sel);
         function el(tag, attrs = {}, ...children) {
             const node = document.createElement(tag);
@@ -487,127 +411,69 @@
             for (const c of children) if (c != null) node.appendChild(typeof c === "string" ? document.createTextNode(c) : c);
             return node;
         }
-        function safeStringify(v, max = 220) {
-            let s;
-            try { s = typeof v === "string" ? v : JSON.stringify(v, null, 0); } catch { s = String(v); }
-            if (s.length > max) s = s.slice(0, max) + " …";
-            return s;
-        }
+        function safeStringify(v, max = 220) { let s; try { s = typeof v === "string" ? v : JSON.stringify(v) } catch { s = String(v); } if (s.length > max) s = s.slice(0, max) + " …"; return s; }
 
-        function render(pages, filterText = "") {
-            const out = $("#output"), stats = $("#stats");
-            out.innerHTML = ""; stats.innerHTML = "";
-            const filter = (filterText || "").trim().toLowerCase();
-            let totalRoots = 0, totalItems = 0;
-
+        function render(pages, filterText = "", onlyPage = null) {
+            const out = $("#output"), stats = $("#stats"); out.innerHTML = ""; stats.innerHTML = "";
+            const filter = (filterText || "").toLowerCase(); let totalRoots = 0, totalItems = 0;
             const pageOrder = [...PAGE_RULES.map(r => r.name), UNMAPPED].filter(n => pages.has(n));
-            for (const pageName of pageOrder) {
-                const groups = pages.get(pageName) || [];
-                if (!groups.length) continue;
+            const effectiveOrder = onlyPage ? pageOrder.filter(n => n === onlyPage) : pageOrder;
+            for (const pageName of effectiveOrder) {
+                const groups = pages.get(pageName) || []; if (!groups.length) continue;
                 groups.sort((a, b) => a.rootKey.localeCompare(b.rootKey));
-                const pageCount = groups.reduce((acc, g) => acc + g.entries.length, 0);
+                const pageCount = groups.reduce((a, g) => a + g.entries.length, 0);
                 totalRoots += groups.length; totalItems += pageCount;
-
                 const details = el("details", { class: "page", open: true });
-                const summary = el("summary", {}, el("span", {}, pageName), el("span", { class: "badge" }, `${groups.length} roots • ${pageCount} items`));
+                details.appendChild(el("summary", {}, pageName, el("span", { class: "badge" }, `${groups.length} roots • ${pageCount} items`)));
                 const list = el("div", { class: "list" });
-
                 for (const { rootKey, entries } of groups) {
-                    const filtered = entries.filter(e => {
-                        if (!filter) return true;
-                        const k = e.key.toLowerCase();
-                        let v; try { v = JSON.stringify(e.value).toLowerCase(); } catch { v = ""; }
-                        return k.includes(filter) || v.includes(filter);
-                    });
+                    const filtered = entries.filter(e => !filter || e.key.toLowerCase().includes(filter) || JSON.stringify(e.value).toLowerCase().includes(filter));
                     if (!filtered.length) continue;
-
-                    const item = el("div", { class: "item" },
-                        el("div", { class: "key" }, rootKey)
-                    );
-                    for (const e of filtered) {
-                        item.appendChild(el("div", { class: "small" }, e.key));
-                        item.appendChild(el("div", { class: "value" }, safeStringify(e.value, 300)));
-                    }
+                    const item = el("div", { class: "item" }, el("div", { class: "key" }, rootKey));
+                    for (const e of filtered) { item.appendChild(el("div", { class: "small" }, e.key)); item.appendChild(el("div", { class: "value" }, safeStringify(e.value, 300))); }
                     list.appendChild(item);
                 }
-
-                details.appendChild(summary);
-                details.appendChild(list);
-                out.appendChild(details);
+                details.appendChild(list); out.appendChild(details);
             }
-            stats.appendChild(el("div", { class: "stat" }, `Pages: ${pageOrder.length}`));
+            stats.appendChild(el("div", { class: "stat" }, `Pages: ${effectiveOrder.length}`));
             stats.appendChild(el("div", { class: "stat" }, `Root keys: ${totalRoots}`));
             stats.appendChild(el("div", { class: "stat" }, `Items: ${totalItems}`));
         }
 
-        // --- Wire UI ---
-        const $url = $("#url"), $json = $("#json"), $filter = $("#filter");
-
-        $("#btn-load-url").onclick = async () => {
-            const url = $url.value.trim();
-            if (!url) return alert("Enter a URL to a raw JSON file.");
-            try {
-                const res = await fetch(url, { mode: "cors" });
-                if (!res.ok) throw new Error(`HTTP ${res.status}`);
-                $json.value = await res.text();
-                parseAndRender();
-            } catch (err) {
-                alert("Fetch failed: " + err.message + "\n\nTip: use a CORS-enabled raw URL (e.g., raw.githubusercontent.com). Or just paste the JSON.");
-            }
-        };
-        $("#btn-try-sample").onclick = () => {
-            $json.value = JSON.stringify({
-                data: {
-                    "view:claimType": { "view:claimingIncrease": true, "view:claimingNew": true },
-                    "phoneAndEmail": { "primaryPhone": "4445551212", "emailAddress": "test@example.com" },
-                    "view:bankAccount": { "bankAccountType": "Checking", "bankAccountNumber": "1233" },
-                    "newDisabilities": [{ cause: "NEW", condition: "asthma" }],
-                    "incident0": { incidentLocation: { country: "USA" } }
-                }
-            }, null, 2);
-            parseAndRender();
-        };
-        $("#btn-parse").onclick = parseAndRender;
-        $("#btn-clear").onclick = () => { $json.value = ""; $("#output").innerHTML = ""; $("#stats").innerHTML = ""; $filter.value = ""; };
-        $filter.addEventListener("input", () => {
-            try {
-                const json = JSON.parse($json.value || "{}");
-                const data = extractDataRoot(json) || {};
-                const pages = groupByPages(data);
-                render(pages, $filter.value);
-            } catch { }
-        });
-
-        $("#btn-copy-report").onclick = () => {
-            try {
-                const json = JSON.parse($json.value || "{}");
-                const data = extractDataRoot(json) || {};
-                const pages = groupByPages(data);
-                const order = [...PAGE_RULES.map(r => r.name), UNMAPPED].filter(n => pages.has(n));
-                const lines = [];
-                for (const name of order) {
-                    const groups = pages.get(name) || [];
-                    const count = groups.reduce((a, g) => a + g.entries.length, 0);
-                    lines.push(`${name}: ${groups.length} root keys • ${count} items`);
-                    for (const g of groups) lines.push(`  - ${g.rootKey}`);
-                }
-                navigator.clipboard.writeText(lines.join("\n"));
-                alert("Copied summary to clipboard.");
-            } catch (e) { alert("Nothing to copy yet. Parse a JSON first."); }
-        };
-
-        function parseAndRender() {
-            let json;
-            try { json = JSON.parse($json.value || "{}"); }
-            catch (err) { return alert("Invalid JSON: " + err.message); }
-            const data = extractDataRoot(json) || {};
-            const pages = groupByPages(data);
-            render(pages, $filter.value);
+        function populatePageSelect(pages) {
+            const sel = $("#page-select"); sel.innerHTML = '<option value="" selected disabled>Pick a page…</option>';
+            const order = [...PAGE_RULES.map(r => r.name), UNMAPPED].filter(n => pages.has(n));
+            for (const name of order) { const opt = document.createElement("option"); opt.value = name; opt.textContent = name; sel.appendChild(opt); }
         }
 
-        // Prefill the vetted raw URL for convenience
-        $url.value = "https://raw.githubusercontent.com/department-of-veterans-affairs/vets-website/main/src/applications/disability-benefits/all-claims/tests/fixtures/data/transformed-data/maximal-test.json";
-    </script>
-</body>
+        function parseAndRender() {
+            let json; try { json = JSON.parse($("#json").value || "{}"); } catch (e) { return alert("Invalid JSON"); }
+            const data = extractDataRoot(json) || {}; const pages = groupByPages(data);
+            LAST_PAGES = pages; populatePageSelect(pages); render(pages, $("#filter").value);
+        }
 
+        // Button handlers
+        $("#btn-load-url").onclick = async () => { try { const res = await fetch($("#url").value.trim()); $("#json").value = await res.text(); parseAndRender(); } catch (e) { alert("Fetch failed"); } };
+        $("#btn-try-sample").onclick = () => { $("#json").value = JSON.stringify({ data: { "view:claimType": { "view:claimingIncrease": true }, "phoneAndEmail": { "primaryPhone": "123" } } }, null, 2); parseAndRender(); };
+        $("#btn-parse").onclick = parseAndRender;
+        $("#btn-clear").onclick = () => { $("#json").value = ""; $("#output").innerHTML = ""; $("#stats").innerHTML = "";
+              $("#filter").value = "";
+                };
+                $("#filter").oninput = () => { if (LAST_PAGES) render(LAST_PAGES, $("#filter").value); };
+                $("#btn-copy-report").onclick = () => {
+                    if (!LAST_PAGES) return; const order = [...PAGE_RULES.map(r => r.name), UNMAPPED].filter(n => LAST_PAGES.has(n));
+                    const lines = []; for (const name of order) { const groups = LAST_PAGES.get(name) || []; const count = groups.reduce((a, g) => a + g.entries.length, 0); lines.push(`${name}: ${groups.length} roots • ${count} items`); }
+                    navigator.clipboard.writeText(lines.join("\n")); alert("Copied page counts to clipboard.");
+                };
+                $("#btn-copy-pages").onclick = () => {
+                    if (!LAST_PAGES) return; const order = [...PAGE_RULES.map(r => r.name), UNMAPPED].filter(n => LAST_PAGES.has(n));
+                    navigator.clipboard.writeText(order.join("\n")); alert("Copied page list to clipboard.");
+                };
+                $("#btn-show-page").onclick = () => { if (!LAST_PAGES) return; const page = $("#page-select").value; if (!page) return alert("Pick a page first."); render(LAST_PAGES, $("#filter").value, page); };
+                $("#btn-show-all").onclick = () => { if (LAST_PAGES) render(LAST_PAGES, $("#filter").value, null); };
+
+                // Prefill the VA maximal JSON URL
+                $("#url").value = "https://raw.githubusercontent.com/department-of-veterans-affairs/vets-website/main/src/applications/disability-benefits/all-claims/tests/fixtures/data/transformed-data/maximal-test.json";
+          </script>
+</body>
 </html>

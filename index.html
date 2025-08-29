@@ -3,7 +3,7 @@
 
 <head>
     <meta charset="utf-8" />
-    <title>VA 526EZ Maximal JSON → Page Buckets</title>
+    <title>VA 526EZ Maximal JSON → Page Buckets + Compare</title>
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta name="color-scheme" content="light dark" />
     <style>
@@ -20,53 +20,59 @@
             --shadow: 0 10px 30px rgba(0, 0, 0, .35);
             --ring: 0 0 0 3px rgba(124, 197, 255, .25);
             --link: #9dd6ff;
+            --added: #1c5e2d;
+            --removed: #6e1f28;
+            --changed: #6a5516;
         }
 
         @media (prefers-color-scheme: light) {
             :root {
                 --bg: #f7f9fc;
-                --panel: #ffffff;
+                --panel: #fff;
                 --text: #0b1220;
                 --muted: #5b697a;
                 --accent: #0b74d0;
                 --chip: #eef5ff;
                 --border: #e8edf3;
-                --card: #ffffff;
-                --input: #ffffff;
+                --card: #fff;
+                --input: #fff;
                 --shadow: 0 8px 24px rgba(6, 24, 44, .08);
                 --ring: 0 0 0 3px rgba(11, 116, 208, .15);
                 --link: #0b74d0;
+                --added: #dff5e7;
+                --removed: #fde2e5;
+                --changed: #fff2cc;
             }
         }
 
         * {
-            box-sizing: border-box;
+            box-sizing: border-box
         }
 
         body {
             margin: 0;
             font: 15px/1.55 Inter, ui-sans-serif, system-ui, -apple-system, "Segoe UI", Roboto, Helvetica, Arial;
             color: var(--text);
-            background: var(--bg);
+            background: var(--bg)
         }
 
         .container {
             max-width: 1200px;
             margin: 0 auto;
-            padding: 28px 20px 40px;
+            padding: 28px 20px 40px
         }
 
         header {
             display: flex;
             align-items: center;
             justify-content: space-between;
-            margin-bottom: 16px;
+            margin-bottom: 16px
         }
 
         .title {
             display: flex;
             align-items: center;
-            gap: 12px;
+            gap: 12px
         }
 
         .logo {
@@ -79,29 +85,49 @@
             border: 1px solid var(--border);
             box-shadow: var(--shadow);
             font-weight: 800;
-            color: var(--accent);
+            color: var(--accent)
         }
 
         h1 {
             margin: 0;
-            font-size: 18px;
+            font-size: 18px
         }
 
         .sub {
             margin: 2px 0 0;
             color: var(--muted);
-            font-size: 13px;
+            font-size: 13px
+        }
+
+        .tabs {
+            display: flex;
+            gap: 8px;
+            margin: 16px 0
+        }
+
+        .tab {
+            border: 1px solid var(--border);
+            background: var(--panel);
+            color: var(--text);
+            padding: 10px 12px;
+            border-radius: 10px;
+            cursor: pointer;
+            font-weight: 600
+        }
+
+        .tab.active {
+            outline: 2px solid color-mix(in oklab, var(--accent) 40%, transparent)
         }
 
         .grid {
             display: grid;
             gap: 18px;
-            grid-template-columns: 1fr;
+            grid-template-columns: 1fr
         }
 
-        @media (min-width: 1100px) {
+        @media (min-width:1100px) {
             .grid {
-                grid-template-columns: 360px 1fr;
+                grid-template-columns: 360px 1fr
             }
         }
 
@@ -109,18 +135,18 @@
             background: var(--panel);
             border: 1px solid var(--border);
             border-radius: 16px;
-            box-shadow: var(--shadow);
+            box-shadow: var(--shadow)
         }
 
         .card .inner {
-            padding: 16px;
+            padding: 16px
         }
 
         .toolbar {
             display: flex;
             gap: 8px;
             flex-wrap: wrap;
-            margin-bottom: 10px;
+            margin-bottom: 10px
         }
 
         label {
@@ -129,7 +155,7 @@
             margin: 12px 0 8px;
             color: var(--muted);
             font-size: 12px;
-            text-transform: uppercase;
+            text-transform: uppercase
         }
 
         input[type="text"],
@@ -140,13 +166,13 @@
             border: 1px solid var(--border);
             background: var(--input);
             color: var(--text);
-            outline: none;
+            outline: none
         }
 
         textarea {
             min-height: 220px;
             resize: vertical;
-            font-family: ui-monospace, monospace;
+            font-family: ui-monospace, monospace
         }
 
         .btn {
@@ -156,29 +182,29 @@
             padding: 10px 12px;
             border-radius: 10px;
             cursor: pointer;
-            font-weight: 600;
+            font-weight: 600
         }
 
         .btn:hover {
-            filter: brightness(1.05);
+            filter: brightness(1.05)
         }
 
         .btn.primary {
-            background: linear-gradient(180deg, color-mix(in oklab, var(--accent) 28%, transparent), transparent);
+            background: linear-gradient(180deg, color-mix(in oklab, var(--accent) 28%, transparent), transparent)
         }
 
         .search {
             display: flex;
             gap: 8px;
             margin-top: 10px;
-            flex-wrap: wrap;
+            flex-wrap: wrap
         }
 
         .stats {
             display: flex;
             gap: 10px;
             flex-wrap: wrap;
-            margin-top: 12px;
+            margin-top: 12px
         }
 
         .stat {
@@ -187,19 +213,19 @@
             border-radius: 8px;
             border: 1px solid var(--border);
             font-size: 13px;
-            color: var(--muted);
+            color: var(--muted)
         }
 
         .pages {
             display: grid;
             gap: 14px;
-            padding: 12px;
+            padding: 12px
         }
 
         details.page {
             border: 1px solid var(--border);
             border-radius: 14px;
-            background: var(--card);
+            background: var(--card)
         }
 
         details.page>summary {
@@ -207,11 +233,11 @@
             padding: 12px 14px;
             cursor: pointer;
             display: flex;
-            gap: 10px;
+            gap: 10px
         }
 
         details.page>summary::-webkit-details-marker {
-            display: none;
+            display: none
         }
 
         .badge {
@@ -220,13 +246,13 @@
             color: var(--accent);
             padding: 2px 8px;
             border-radius: 999px;
-            font-size: 12px;
+            font-size: 12px
         }
 
         .list {
             padding: 10px 14px 14px;
             display: grid;
-            gap: 10px;
+            gap: 10px
         }
 
         .item {
@@ -235,18 +261,18 @@
             padding: 12px;
             border: 1px dashed var(--border);
             border-radius: 10px;
-            background: var(--card);
+            background: var(--card)
         }
 
         .key {
             font-family: monospace;
             color: var(--accent);
-            font-size: 13px;
+            font-size: 13px
         }
 
         .small {
             font-size: 12px;
-            color: var(--muted);
+            color: var(--muted)
         }
 
         .value {
@@ -258,7 +284,39 @@
             border: 1px solid var(--border);
             padding: 8px;
             border-radius: 8px;
-            font-size: 12.5px;
+            font-size: 12.5px
+        }
+
+        /* Diff pills */
+        .pill {
+            display: inline-block;
+            padding: 2px 8px;
+            border-radius: 999px;
+            border: 1px solid var(--border);
+            font-size: 11px
+        }
+
+        .pill.added {
+            background: var(--added)
+        }
+
+        .pill.removed {
+            background: var(--removed)
+        }
+
+        .pill.changed {
+            background: var(--changed)
+        }
+
+        .two-cols {
+            display: grid;
+            gap: 12px
+        }
+
+        @media (min-width:1100px) {
+            .two-cols {
+                grid-template-columns: 1fr 1fr
+            }
         }
     </style>
 </head>
@@ -270,53 +328,114 @@
                 <div class="logo">VA</div>
                 <div>
                     <h1>526EZ Maximal JSON → Page Buckets</h1>
-                    <div class="sub">Paste the maximal JSON or fetch from the repo URL.</div>
+                    <div class="sub">Explore or compare JSON (local-only).</div>
                 </div>
             </div>
         </header>
 
-        <div class="grid">
-            <div class="card">
-                <div class="inner">
-                    <div class="toolbar">
-                        <button class="btn primary" id="btn-load-url">Fetch from URL</button>
-                        <button class="btn" id="btn-try-sample">Load sample</button>
-                        <button class="btn" id="btn-parse">Parse JSON</button>
-                        <button class="btn" id="btn-clear">Clear</button>
+        <!-- Tabs -->
+        <div class="tabs">
+            <button id="tab-explore" class="tab active">Explore</button>
+            <button id="tab-compare" class="tab">Compare</button>
+        </div>
+
+        <!-- EXPLORE VIEW -->
+        <section id="view-explore">
+            <div class="grid">
+                <div class="card">
+                    <div class="inner">
+                        <div class="toolbar">
+                            <button class="btn primary" id="btn-load-url">Fetch from URL</button>
+                            <button class="btn" id="btn-try-sample">Load sample</button>
+                            <button class="btn" id="btn-parse">Parse JSON</button>
+                            <button class="btn" id="btn-clear">Clear</button>
+                        </div>
+
+                        <label for="url">JSON URL (raw)</label>
+                        <input id="url" type="text"
+                            placeholder="https://raw.githubusercontent.com/.../maximal-test.json" />
+
+                        <label for="json">Maximal JSON</label>
+                        <textarea id="json" placeholder="Paste the maximal-test.json contents here"></textarea>
+
+                        <div class="search">
+                            <input id="filter" type="text" placeholder="Filter keys/values…" />
+                            <button class="btn" id="btn-copy-report">Copy page counts</button>
+                            <button class="btn" id="btn-copy-pages">Copy page list</button>
+                        </div>
+
+                        <div class="search">
+                            <select id="page-select"
+                                style="flex:1; padding:10px; border-radius:10px; border:1px solid var(--border); background:var(--input); color:var(--text);">
+                                <option value="" selected disabled>Pick a page…</option>
+                            </select>
+                            <button class="btn" id="btn-show-page">Show page</button>
+                            <button class="btn" id="btn-show-all">Show all</button>
+                        </div>
+
+                        <div class="stats" id="stats"></div>
                     </div>
+                </div>
 
-                    <label for="url">JSON URL (raw)</label>
-                    <input id="url" type="text" placeholder="https://raw.githubusercontent.com/.../maximal-test.json" />
-
-                    <label for="json">Maximal JSON</label>
-                    <textarea id="json" placeholder="Paste the maximal-test.json contents here"></textarea>
-
-                    <div class="search">
-                        <input id="filter" type="text" placeholder="Filter keys/values…" />
-                        <button class="btn" id="btn-copy-report">Copy page counts</button>
-                        <button class="btn" id="btn-copy-pages">Copy page list</button>
-                    </div>
-
-                    <div class="search">
-                        <select id="page-select"
-                            style="flex:1; padding:10px; border-radius:10px; border:1px solid var(--border); background:var(--input); color:var(--text);">
-                            <option value="" selected disabled>Pick a page…</option>
-                        </select>
-                        <button class="btn" id="btn-show-page">Show page</button>
-                        <button class="btn" id="btn-show-all">Show all</button>
-                    </div>
-
-                    <div class="stats" id="stats"></div>
+                <div class="card">
+                    <div class="pages" id="output"></div>
                 </div>
             </div>
+        </section>
 
-            <div class="card">
-                <div class="pages" id="output"></div>
+        <!-- COMPARE VIEW -->
+        <section id="view-compare" style="display:none">
+            <div class="grid">
+                <div class="card">
+                    <div class="inner">
+                        <div class="toolbar">
+                            <button class="btn primary" id="btn-diff-parse">Parse & Diff</button>
+                            <button class="btn" id="btn-diff-swap">Swap A ↔ B</button>
+                            <button class="btn" id="btn-diff-clear">Clear</button>
+                        </div>
+
+                        <div class="two-cols">
+                            <div>
+                                <label for="urlA">JSON A URL</label>
+                                <div class="search">
+                                    <input id="urlA" type="text"
+                                        placeholder="https://raw.githubusercontent.com/.../maximal-test.json" />
+                                    <button class="btn" id="btn-fetch-A">Fetch A</button>
+                                </div>
+                                <label for="jsonA">JSON A</label>
+                                <textarea id="jsonA" placeholder="Paste JSON A"></textarea>
+                            </div>
+
+                            <div>
+                                <label for="urlB">JSON B URL</label>
+                                <div class="search">
+                                    <input id="urlB" type="text"
+                                        placeholder="https://raw.githubusercontent.com/.../maximal-test.json" />
+                                    <button class="btn" id="btn-fetch-B">Fetch B</button>
+                                </div>
+                                <label for="jsonB">JSON B</label>
+                                <textarea id="jsonB" placeholder="Paste JSON B"></textarea>
+                            </div>
+                        </div>
+
+                        <div class="search">
+                            <input id="diff-filter" type="text" placeholder="Filter diff keys/values…" />
+                            <button class="btn" id="btn-copy-diff-summary">Copy diff summary</button>
+                        </div>
+
+                        <div class="stats" id="diff-stats"></div>
+                    </div>
+                </div>
+
+                <div class="card">
+                    <div class="pages" id="diff-output"></div>
+                </div>
             </div>
-        </div>
+        </section>
     </div>
 
     <script>
+        // ---------- Page bucketing rules ----------
         const PAGE_RULES = [
             { name: "Claim Type", patterns: [/^view:claimType/, /^standardClaim$/, /^view:fdcWarning/] },
             { name: "Employment / Terminal / VA Employee", patterns: [/^isVaEmployee$/, /^isTerminallyIll$/] },
@@ -334,6 +453,8 @@
             { name: "FAQ / Ancillary", patterns: [/^view:ancillaryFormsWizardIntro$/, /^view:faqAccordion$/] },
         ];
         const UNMAPPED = "Unmapped";
+
+        // ---------- Explore helpers ----------
         let LAST_PAGES = null;
 
         function flatten(obj, prefix = "") {
@@ -452,28 +573,133 @@
             LAST_PAGES = pages; populatePageSelect(pages); render(pages, $("#filter").value);
         }
 
-        // Button handlers
-        $("#btn-load-url").onclick = async () => { try { const res = await fetch($("#url").value.trim()); $("#json").value = await res.text(); parseAndRender(); } catch (e) { alert("Fetch failed"); } };
-        $("#btn-try-sample").onclick = () => { $("#json").value = JSON.stringify({ data: { "view:claimType": { "view:claimingIncrease": true }, "phoneAndEmail": { "primaryPhone": "123" } } }, null, 2); parseAndRender(); };
-        $("#btn-parse").onclick = parseAndRender;
-        $("#btn-clear").onclick = () => { $("#json").value = ""; $("#output").innerHTML = ""; $("#stats").innerHTML = "";
-              $("#filter").value = "";
-                };
-                $("#filter").oninput = () => { if (LAST_PAGES) render(LAST_PAGES, $("#filter").value); };
-                $("#btn-copy-report").onclick = () => {
-                    if (!LAST_PAGES) return; const order = [...PAGE_RULES.map(r => r.name), UNMAPPED].filter(n => LAST_PAGES.has(n));
-                    const lines = []; for (const name of order) { const groups = LAST_PAGES.get(name) || []; const count = groups.reduce((a, g) => a + g.entries.length, 0); lines.push(`${name}: ${groups.length} roots • ${count} items`); }
-                    navigator.clipboard.writeText(lines.join("\n")); alert("Copied page counts to clipboard.");
-                };
-                $("#btn-copy-pages").onclick = () => {
-                    if (!LAST_PAGES) return; const order = [...PAGE_RULES.map(r => r.name), UNMAPPED].filter(n => LAST_PAGES.has(n));
-                    navigator.clipboard.writeText(order.join("\n")); alert("Copied page list to clipboard.");
-                };
-                $("#btn-show-page").onclick = () => { if (!LAST_PAGES) return; const page = $("#page-select").value; if (!page) return alert("Pick a page first."); render(LAST_PAGES, $("#filter").value, page); };
-                $("#btn-show-all").onclick = () => { if (LAST_PAGES) render(LAST_PAGES, $("#filter").value, null); };
+        // ---------- Compare helpers ----------
+        function flattenToMap(obj) {
+            // Returns Map<dotPath, stringifiedValue> with array indexes normalized
+            const rows = flatten(obj);
+            const norm = (p) => String(p || "").replace(/\[\d+\]/g, "[]");
+            const map = new Map();
+            for (const r of rows) {
+                const k = norm(r.key);
+                let v; try { v = typeof r.value === "string" ? r.value : JSON.stringify(r.value); } catch { v = String(r.value); }
+                map.set(k, v);
+            }
+            return map;
+        }
 
-                // Prefill the VA maximal JSON URL
-                $("#url").value = "https://raw.githubusercontent.com/department-of-veterans-affairs/vets-website/main/src/applications/disability-benefits/all-claims/tests/fixtures/data/transformed-data/maximal-test.json";
-          </script>
+        function diffJSON(a, b) {
+            // Returns { added:[], removed:[], changed:[] } of dot paths
+            const A = flattenToMap(a);
+            const B = flattenToMap(b);
+            const added = [], removed = [], changed = [];
+            const keysA = new Set(A.keys());
+            const keysB = new Set(B.keys());
+
+            for (const k of keysB) { if (!keysA.has(k)) added.push(k); }
+            for (const k of keysA) { if (!keysB.has(k)) removed.push(k); }
+            for (const k of keysB) {
+                if (keysA.has(k) && A.get(k) !== B.get(k)) changed.push(k);
+            }
+            return { added: added.sort(), removed: removed.sort(), changed: changed.sort() };
+        }
+
+        function pageForPath(path) {
+            const root = (path || "").split(".")[0].replace(/^data\.|^formData\.|^attributes\.|^submission\./, "");
+            return pageFor(root);
+        }
+
+        function renderDiffSummary(diff, filterText = "") {
+            const out = $("#diff-output"), stats = $("#diff-stats"); out.innerHTML = ""; stats.innerHTML = "";
+            const filter = (filterText || "").toLowerCase();
+
+            // Group each class by page
+            const classes = [
+                { key: "added", label: "Added", cls: "added" },
+                { key: "removed", label: "Removed", cls: "removed" },
+                { key: "changed", label: "Changed", cls: "changed" },
+            ];
+
+            let total = 0;
+            for (const cls of classes) total += diff[cls.key].length;
+            stats.appendChild(el("div", { class: "stat" }, `Diff total: ${total}`));
+            stats.appendChild(el("div", { class: "stat" }, `Added: ${diff.added.length}`));
+            stats.appendChild(el("div", { class: "stat" }, `Removed: ${diff.removed.length}`));
+            stats.appendChild(el("div", { class: "stat" }, `Changed: ${diff.changed.length}`));
+
+            const pagesMap = new Map(); // Map<pageName, Array<{kind,path}>>
+            for (const kind of classes) {
+                for (const p of diff[kind.key]) {
+                    if (filter && !p.toLowerCase().includes(filter)) continue;
+                    const page = pageForPath(p);
+                    if (!pagesMap.has(page)) pagesMap.set(page, []);
+                    pagesMap.get(page).push({ kind: kind.label, cls: kind.cls, path: p });
+                }
+            }
+
+            const order = [...PAGE_RULES.map(r => r.name), UNMAPPED].filter(n => pagesMap.has(n));
+            for (const pageName of order) {
+                const entries = pagesMap.get(pageName);
+                const details = el("details", { class: "page", open: true });
+                details.appendChild(el("summary", {}, pageName, el("span", { class: "badge" }, `${entries.length} changes`)));
+                const list = el("div", { class: "list" });
+                for (const e of entries) {
+                    list.appendChild(
+                        el("div", { class: "item" },
+                            el("div", {}, el("span", { class: `pill ${e.cls}` }, e.kind)),
+                            el("div", { class: "small" }, e.path)
+                        )
+                    );
+                }
+                details.appendChild(list);
+                out.appendChild(details);
+            }
+        }
+
+        // ---------- EXPLORE wiring ----------
+        $("#btn-load-url").onclick = async () => { try { const res = await fetch($("#url").value.trim()); $("#json").value = await res.text(); parseAndRender(); } catch (e) { alert("Fetch failed"); } };
+        $("#btn-try-sample").onclick = () => { $("#json").value = JSON.stringify({ data: { "view:claimType": { "view:claimingIncrease": true }, "phoneAndEmail": { "primaryPhone": "123" }, "view:bankAccount": { "bankAccountType": "Checking" }, "newDisabilities": [{ cause: "NEW", condition: "asthma" }], "incident0": { incidentLocation: { country: "USA" } } } }, null, 2); parseAndRender(); };
+        $("#btn-parse").onclick = parseAndRender;
+        $("#btn-clear").onclick = () => { $("#json").value = ""; $("#output").innerHTML = ""; $("#stats").innerHTML = ""; $("#filter").value = ""; };
+        $("#filter").oninput = () => { if (LAST_PAGES) render(LAST_PAGES, $("#filter").value); };
+        $("#btn-copy-report").onclick = () => {
+            if (!LAST_PAGES) return; const order = [...PAGE_RULES.map(r => r.name), UNMAPPED].filter(n => LAST_PAGES.has(n));
+            const lines = []; for (const name of order) { const groups = LAST_PAGES.get(name) || []; const count = groups.reduce((a, g) => a + g.entries.length, 0); lines.push(`${name}: ${groups.length} roots • ${count} items`); for (const g of groups) lines.push(`  - ${g.rootKey}`); }
+            navigator.clipboard.writeText(lines.join("\n")); alert("Copied page counts.");
+        };
+        $("#btn-copy-pages").onclick = () => {
+            if (!LAST_PAGES) return; const order = [...PAGE_RULES.map(r => r.name), UNMAPPED].filter(n => LAST_PAGES.has(n));
+            navigator.clipboard.writeText(order.join("\n")); alert("Copied page list.");
+        };
+        $("#btn-show-page").onclick = () => { if (!LAST_PAGES) return; const page = $("#page-select").value; if (!page) return alert("Pick a page first."); render(LAST_PAGES, $("#filter").value, page); };
+        $("#btn-show-all").onclick = () => { if (LAST_PAGES) render(LAST_PAGES, $("#filter").value, null); };
+        $("#url").value = "https://raw.githubusercontent.com/department-of-veterans-affairs/vets-website/main/src/applications/disability-benefits/all-claims/tests/fixtures/data/transformed-data/maximal-test.json";
+
+        // ---------- COMPARE wiring ----------
+        $("#btn-fetch-A").onclick = async () => { try { const res = await fetch($("#urlA").value.trim()); $("#jsonA").value = await res.text(); } catch (e) { alert("Fetch A failed"); } };
+        $("#btn-fetch-B").onclick = async () => { try { const res = await fetch($("#urlB").value.trim()); $("#jsonB").value = await res.text(); } catch (e) { alert("Fetch B failed"); } };
+        $("#btn-diff-swap").onclick = () => { const a = $("#jsonA").value, b = $("#jsonB").value; $("#jsonA").value = b; $("#jsonB").value = a; };
+        $("#btn-diff-clear").onclick = () => { $("#jsonA").value = ""; $("#jsonB").value = ""; $("#diff-output").innerHTML = ""; $("#diff-stats").innerHTML = ""; $("#diff-filter").value = ""; };
+
+        $("#btn-diff-parse").onclick = () => {
+            let A, B;
+            try { A = extractDataRoot(JSON.parse($("#jsonA").value || "{}")); } catch (e) { return alert("JSON A invalid"); }
+            try { B = extractDataRoot(JSON.parse($("#jsonB").value || "{}")); } catch (e) { return alert("JSON B invalid"); }
+            const diff = diffJSON(A, B);
+            renderDiffSummary(diff, $("#diff-filter").value);
+        };
+        $("#diff-filter").oninput = () => { $("#btn-diff-parse").click(); };
+
+        // ---------- Tabs ----------
+        function showTab(which) {
+            const ex = $("#view-explore"), cp = $("#view-compare");
+            $("#tab-explore").classList.toggle("active", which === "explore");
+            $("#tab-compare").classList.toggle("active", which === "compare");
+            ex.style.display = which === "explore" ? "" : "none";
+            cp.style.display = which === "compare" ? "" : "none";
+        }
+        $("#tab-explore").onclick = () => showTab("explore");
+        $("#tab-compare").onclick = () => showTab("compare");
+    </script>
 </body>
+
 </html>
